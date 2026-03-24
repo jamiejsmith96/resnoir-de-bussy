@@ -99,27 +99,31 @@ export default function Header() {
         </nav>
 
         <button
-          className="hidden max-md:flex flex-col gap-1.5 p-2 z-[1001]"
+          className="hidden max-md:block relative w-10 h-10 z-[1001]"
           onClick={toggle}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
           <span
-            className={`w-6 h-[1.5px] bg-charcoal transition-transform duration-400 ${
-              menuOpen ? "rotate-45 translate-x-[5px] translate-y-[5px]" : ""
-            }`}
+            className="absolute left-2 w-6 h-[1.5px] bg-charcoal transition-all duration-300"
+            style={{
+              top: menuOpen ? "50%" : "calc(50% - 6px)",
+              transform: menuOpen ? "rotate(45deg)" : "none",
+            }}
           />
           <span
-            className={`w-6 h-[1.5px] bg-charcoal transition-opacity duration-300 ${
-              menuOpen ? "opacity-0" : ""
-            }`}
+            className="absolute left-2 top-1/2 w-6 h-[1.5px] bg-charcoal transition-all duration-300"
+            style={{
+              opacity: menuOpen ? 0 : 1,
+              transform: menuOpen ? "scaleX(0)" : "scaleX(1)",
+            }}
           />
           <span
-            className={`w-6 h-[1.5px] bg-charcoal transition-transform duration-400 ${
-              menuOpen
-                ? "-rotate-45 translate-x-[5px] -translate-y-[5px]"
-                : ""
-            }`}
+            className="absolute left-2 w-6 h-[1.5px] bg-charcoal transition-all duration-300"
+            style={{
+              top: menuOpen ? "50%" : "calc(50% + 6px)",
+              transform: menuOpen ? "rotate(-45deg)" : "none",
+            }}
           />
         </button>
       </div>
