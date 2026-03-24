@@ -36,7 +36,7 @@ export async function POST(request: Request) {
 
     // Email to Resnoir
     await getResend().emails.send({
-      from: "Resnoir de Bussy Website <bookings@resnoirdebussy.com>",
+      from: "Resnoir de Bussy Website <onboarding@resend.dev>",
       to: getRecipient(),
       replyTo: email,
       subject: `New Booking Request — ${name}`,
@@ -80,7 +80,7 @@ export async function POST(request: Request) {
 
     // Confirmation email to client
     await getResend().emails.send({
-      from: "Resnoir de Bussy <bookings@resnoirdebussy.com>",
+      from: "Resnoir de Bussy <onboarding@resend.dev>",
       to: email,
       subject: "Your Booking Request — Resnoir de Bussy",
       html: `

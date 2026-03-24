@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     }
 
     await getResend().emails.send({
-      from: "Resnoir de Bussy Website <contact@resnoirdebussy.com>",
+      from: "Resnoir de Bussy Website <onboarding@resend.dev>",
       to: getRecipient(),
       replyTo: email,
       subject: `Contact Form — ${name}`,
@@ -61,7 +61,7 @@ export async function POST(request: Request) {
 
     // Auto-reply to sender
     await getResend().emails.send({
-      from: "Resnoir de Bussy <contact@resnoirdebussy.com>",
+      from: "Resnoir de Bussy <onboarding@resend.dev>",
       to: email,
       subject: "Thank You for Reaching Out — Resnoir de Bussy",
       html: `
