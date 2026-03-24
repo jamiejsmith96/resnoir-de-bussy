@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import ScrollReveal from "./ScrollReveal";
 import SectionLabel from "./SectionLabel";
 
@@ -176,6 +176,13 @@ export default function Booking() {
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (success && sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [success]);
 
   const validate = useCallback((form: FormData) => {
     const errs: Record<string, string> = {};
@@ -238,7 +245,7 @@ export default function Booking() {
 
   if (success) {
     return (
-      <section className="py-[clamp(80px,12vw,160px)] bg-bg" id="booking">
+      <section ref={sectionRef} className="py-[clamp(80px,12vw,160px)] bg-bg" id="booking">
         <div className="max-w-[1200px] mx-auto px-[clamp(24px,5vw,80px)] text-center py-20">
           <svg width="56" height="56" viewBox="0 0 56 56" fill="none" className="mx-auto mb-6 text-sage" aria-hidden="true">
             <circle cx="28" cy="28" r="27" stroke="currentColor" strokeWidth="1.5" />

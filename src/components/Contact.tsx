@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import ScrollReveal from "./ScrollReveal";
 import SectionLabel from "./SectionLabel";
 
@@ -9,6 +9,13 @@ export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (success && sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [success]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,7 +57,7 @@ export default function Contact() {
 
   if (success) {
     return (
-      <section className="py-[clamp(60px,8vw,100px)] bg-bg" id="contact">
+      <section ref={sectionRef} className="py-[clamp(60px,8vw,100px)] bg-bg" id="contact">
         <div className="max-w-[600px] mx-auto px-[clamp(24px,5vw,80px)] text-center py-12">
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="mx-auto mb-5 text-sage" aria-hidden="true">
             <circle cx="24" cy="24" r="23" stroke="currentColor" strokeWidth="1.5" />
