@@ -7,6 +7,7 @@ import Process from "@/components/Process";
 import Testimonials from "@/components/Testimonials";
 import Booking from "@/components/Booking";
 import FAQ from "@/components/FAQ";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -28,6 +29,7 @@ export default function Home() {
         <Testimonials />
         <Booking />
         <FAQ />
+        <Contact />
       </main>
       <Footer />
     </>

@@ -97,8 +97,17 @@ export async function POST(request: Request) {
           </p>
 
           <div style="margin-top: 32px; padding: 24px; background: #FAF7F2;">
-            <p style="margin: 0 0 4px; font-size: 13px; color: #6B6B6B; text-transform: uppercase; letter-spacing: 0.1em;">Session Requested</p>
-            <p style="margin: 0; font-size: 15px; color: #3D3D3D;">${sessionLabels[sessionType] || sessionType}</p>
+            <p style="margin: 0 0 4px; font-size: 13px; color: #6B6B6B; text-transform: uppercase; letter-spacing: 0.1em;">Your Booking Details</p>
+            <table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #3D3D3D; margin-top: 12px;">
+              <tr>
+                <td style="padding: 8px 0; color: #6B6B6B; width: 120px;">Session</td>
+                <td style="padding: 8px 0;">${sessionLabels[sessionType] || sessionType}</td>
+              </tr>
+              ${date ? `<tr>
+                <td style="padding: 8px 0; color: #6B6B6B;">Preferred Date</td>
+                <td style="padding: 8px 0;">${date}</td>
+              </tr>` : ""}
+            </table>
           </div>
 
           <p style="margin-top: 32px; font-size: 13px; color: #6B6B6B;">

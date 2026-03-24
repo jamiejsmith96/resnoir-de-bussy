@@ -50,6 +50,8 @@ html.intro-active ::-webkit-scrollbar-thumb {
 }
 html.intro-active {
   scrollbar-color: transparent var(--color-bg);
+  overflow: hidden;
+  touch-action: none;
 }
 
 @layer base {
