@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   title: "Resnoir de Bussy — Shamanic Practitioner",
   description:
     "Remote shamanic healing with Resnoir de Bussy. Soul retrieval, energy clearing, ancestral healing, and more. Distance is no barrier to deep transformation.",
+  icons: {
+    icon: "/favicon.svg",
+  },
   other: {
     "theme-color": "#FAF7F2",
   },
