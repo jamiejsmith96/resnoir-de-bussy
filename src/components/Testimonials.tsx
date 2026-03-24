@@ -143,25 +143,29 @@ export default function Testimonials() {
               </div>
             </div>
 
-            {/* Dots + counter */}
-            <div className="flex items-center justify-center gap-4 mt-12">
+            {/* Navigation bar */}
+            <div className="flex items-center justify-center gap-4 mt-8">
               <span className="text-[0.65rem] tracking-[0.1em] text-gold/40 tabular-nums">
                 {String(current + 1).padStart(2, "0")}
               </span>
-              <div className="flex gap-3" role="tablist">
+              <div className="flex items-center gap-2" role="tablist">
                 {testimonials.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => goTo(i)}
-                    className={`h-[2px] rounded-full transition-all duration-500 py-3 bg-clip-content ${
-                      i === current
-                        ? "w-10 bg-gold"
-                        : "w-6 bg-gold/30 hover:bg-gold/50"
-                    }`}
                     role="tab"
                     aria-selected={i === current}
                     aria-label={`Testimonial ${i + 1}`}
-                  />
+                    className="relative py-3 cursor-pointer"
+                  >
+                    <span
+                      className={`block rounded-full transition-all duration-500 ${
+                        i === current
+                          ? "w-10 h-[3px] bg-gold"
+                          : "w-6 h-[2px] bg-gold/30"
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
               <span className="text-[0.65rem] tracking-[0.1em] text-gold/40 tabular-nums">

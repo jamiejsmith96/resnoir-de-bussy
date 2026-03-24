@@ -25,7 +25,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-dvh flex items-center justify-center text-center overflow-hidden pt-[100px] pb-[80px] max-md:pt-[90px] max-md:pb-[100px]">
+    <section className="relative min-h-dvh flex items-center justify-center text-center overflow-hidden pt-[100px] pb-[120px]">
       {/* Background gradients */}
       <div
         className="absolute inset-0 z-0"
@@ -119,7 +119,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-2 flex flex-col items-center gap-2 opacity-0"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-2 flex-col items-center gap-2 opacity-0 hidden md:flex"
         style={{ animation: "hero-fade-up 1s cubic-bezier(0.16,1,0.3,1) 1.3s forwards" }}
       >
         <span className="text-[0.6rem] tracking-[0.2em] uppercase text-text-light">
