@@ -34,11 +34,26 @@ export default function Testimonials() {
   const prev = () => goTo((current - 1 + testimonials.length) % testimonials.length);
   const next = () => goTo((current + 1) % testimonials.length);
 
+  // Touch swipe
+  const touchStart = useRef<number | null>(null);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart.current === null) return;
+    const diff = touchStart.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) next();
+      else prev();
+    }
+    touchStart.current = null;
+  };
+
   useEffect(() => {
     if (paused) return;
     timerRef.current = setInterval(() => {
       setCurrent((c) => (c + 1) % testimonials.length);
-    }, 10000);
+    }, 15000);
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
@@ -91,8 +106,12 @@ export default function Testimonials() {
               </svg>
             </button>
 
-            {/* Carousel */}
-            <div className="overflow-hidden">
+            {/* Carousel — swipeable on mobile */}
+            <div
+              className="overflow-hidden"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
               <div
                 className="flex transition-transform duration-700"
                 style={{
@@ -134,10 +153,10 @@ export default function Testimonials() {
                   <button
                     key={i}
                     onClick={() => goTo(i)}
-                    className={`h-[2px] rounded-full transition-all duration-500 ${
+                    className={`h-[2px] rounded-full transition-all duration-500 py-3 bg-clip-content ${
                       i === current
-                        ? "w-8 bg-gold"
-                        : "w-4 bg-gold/30 hover:bg-gold/50"
+                        ? "w-10 bg-gold"
+                        : "w-6 bg-gold/30 hover:bg-gold/50"
                     }`}
                     role="tab"
                     aria-selected={i === current}

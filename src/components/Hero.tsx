@@ -25,7 +25,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-dvh flex items-center justify-center text-center overflow-hidden">
+    <section className="relative min-h-dvh flex items-center justify-center text-center overflow-hidden pt-[100px] pb-[80px] max-md:pt-[90px] max-md:pb-[100px]">
       {/* Background gradients */}
       <div
         className="absolute inset-0 z-0"
@@ -88,7 +88,7 @@ export default function Hero() {
         </h1>
 
         <p
-          className="text-[clamp(1rem,1.3vw,1.15rem)] text-text-light mx-auto mb-12 max-w-[520px] leading-[1.8] opacity-0"
+          className="text-[clamp(0.95rem,1.3vw,1.15rem)] text-text-light mx-auto mb-10 max-md:mb-8 max-w-[520px] leading-[1.8] opacity-0"
           style={{ animation: "hero-fade-up 1s cubic-bezier(0.16,1,0.3,1) 0.7s forwards" }}
         >
           Remote shamanic healing that transcends distance. Deep, transformative
