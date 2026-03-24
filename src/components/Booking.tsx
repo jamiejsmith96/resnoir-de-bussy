@@ -192,17 +192,47 @@ export default function Booking() {
     return errs;
   }, [selectedDate]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [submitError, setSubmitError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitError("");
     const form = new FormData(e.currentTarget);
     const errs = validate(form);
     setErrors(errs);
 
     if (Object.keys(errs).length === 0) {
       setSubmitting(true);
-      setTimeout(() => {
-        setSuccess(true);
-      }, 1500);
+      try {
+        const res = await fetch("/api/booking", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: (form.get("name") as string).trim(),
+            email: (form.get("email") as string).trim(),
+            phone: (form.get("phone") as string)?.trim() || "",
+            intention: (form.get("intention") as string).trim(),
+            sessionType: selected,
+            date: selectedDate?.toLocaleDateString("en-GB", {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            }),
+          }),
+        });
+
+        if (res.ok) {
+          setSuccess(true);
+        } else {
+          const data = await res.json();
+          setSubmitError(data.error || "Something went wrong. Please try again.");
+          setSubmitting(false);
+        }
+      } catch {
+        setSubmitError("Network error. Please check your connection and try again.");
+        setSubmitting(false);
+      }
     }
   };
 
@@ -416,6 +446,12 @@ export default function Booking() {
                 {errors.date && (
                   <p className="text-[0.72rem] text-[#C0392B] mb-4" role="alert">
                     {errors.date}
+                  </p>
+                )}
+
+                {submitError && (
+                  <p className="text-[0.72rem] text-[#C0392B] mb-4" role="alert">
+                    {submitError}
                   </p>
                 )}
 
